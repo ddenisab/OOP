@@ -71,12 +71,12 @@ void SetClass::Inserare(int x)
 {
     if(Size==maxSize)
     {
-        int *aux=new int[maxSize+1];
+        maxSize+=1;
+        int *aux=new int[maxSize]; ///atribui memorie pentru o multime noua cu un cardinal mai mare cu 1
         for(int i=0;i<Size;i++)
-            aux[i]=v[i];
+            aux[i]=v[i]; ///copiaza elementele in copie
         delete[] v;
         v=aux;
-        maxSize+=1;
     }
     v[Size++]=x;
     Verif();
@@ -97,9 +97,9 @@ SetClass SetClass::operator+(SetClass& a) ///reuniunea a doua multimi
     int i;
     SetClass r;
     for(i=0;i<Size;i++)
-        r.Inserare(v[i]);
+        r.Inserare(v[i]); ///insereaza mai intai elementele din prima multime
     for(i=0;i<a.Size;i++)
-        r.Inserare(a[i]);
+        r.Inserare(a[i]); ///apoi din cea de a doua multime si verifica sa fie in ordine crescatoare si sa apara o singura data
     return r;
 }
 

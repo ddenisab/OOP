@@ -1,5 +1,6 @@
 #include <iostream>
 #include "SetClass.h"
+#include <cassert>
 
 using namespace std;
 
@@ -37,10 +38,12 @@ int main()
     w.elemente(b, c);
     cout<<"Elementele pare din multime: "<<b<<"\n\n";
     cout<<"Elementele impare din multime: "<<c<<"\n\n";
+
+
     cout<<"Numarul de elemente din multime: "<<v.nr_el();
 
 
-   // b.~SetClass();
+    b.~SetClass();
     c.~SetClass();
 
     v.~SetClass();
