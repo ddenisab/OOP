@@ -1,17 +1,18 @@
 #include "SetClass.h"
 
-/*SetClass::SetClass()
+SetClass::SetClass()
 {
     Size=0;
-    maxSize=0;
-    v=NULL;
-}*/
+    maxSize=1; ///presupun ca multimea are cel putin un element
+    this->maxSize=maxSize;
+    v=new int[this->maxSize];
+}
 
 SetClass::SetClass(int maxSize)
 {
     if(maxSize<=0)
     {
-        std::invalid_argument e("Dimensiune mai mica sau egala cu 0");
+        std::invalid_argument e("Dimensiunea nu este buna");
         throw e;
     }
     this->maxSize=maxSize;
@@ -26,7 +27,7 @@ SetClass::~SetClass()
 
 }
 
-int SetClass::Cautare(int x)
+int SetClass::Cautare(int x) ///returneza pozitia elementului cautat, daca exista
 {
     int i=0;
     while(v[i]!=x && i<Size)
@@ -41,7 +42,7 @@ void SetClass::Stergere(int x)
     int i=Cautare(x);
     if(i!=-1)
     {
-        for(int j=i;j<Size;j++)
+        for(int j=i;j<Size;j++) ///incepe stergerea de pe pozitia elementului x
             v[j]=v[j+1];
         Size--;
     }
@@ -55,13 +56,13 @@ void SetClass::Crescator()
                 std::swap(v[i], v[j]);
 }
 
-void SetClass::Verif()
+void SetClass::Verif() ///verifica daca un element apare o singura data
 {
-    Crescator();
+    Crescator(); ///ordoneaza crescator multimea
     for(int i=0;i<Size;i++)
         if(v[i]==v[i+1])
         {
-            Stergere(v[i]);
+            Stergere(v[i]); ///dupa ordonare daca 2 elemente consecutive sunt egale atunci il sterge pe primul
             i--;
         }
 }
@@ -85,13 +86,13 @@ int& SetClass::operator[](int i)
 {
     if(i<0 || i>=Size)
     {
-        std::invalid_argument e("Index invalid");
+        std::invalid_argument e("Indexul nu este bun");
         throw e;
     }
     return v[i];
 }
 
-SetClass SetClass::operator+(SetClass& a)
+SetClass SetClass::operator+(SetClass& a) ///reuniunea a doua multimi
 {
     int i;
     SetClass r;
@@ -101,6 +102,8 @@ SetClass SetClass::operator+(SetClass& a)
         r.Inserare(a[i]);
     return r;
 }
+
+///supraincarcarea operatorilor < si > pentru compararea cardinalilor
 
 bool SetClass::operator<(SetClass a)
 {
@@ -116,7 +119,7 @@ bool SetClass::operator>(SetClass a)
     return false;
 }
 
-SetClass SetClass::operator*(int x)
+SetClass SetClass::operator*(int x) ///supraincarcarea operatorului * pentru inmultirea cu un scalar
 {
     SetClass w;
     for(int i=0;i<Size;i++)
@@ -135,7 +138,7 @@ SetClass& SetClass::operator=(const SetClass& v)
     return *this;
 }
 
-int SetClass::suma()
+int SetClass::suma() ///suma elementelor din multime
 {
     int s=0;
     for(int i=0;i<Size;i++)
@@ -143,7 +146,7 @@ int SetClass::suma()
     return s;
 }
 
-void SetClass::elemente(SetClass& b, SetClass& c)
+void SetClass::elemente(SetClass& b, SetClass& c) /// functia salveaza elementele pare si cele impare in doua multimi diferite
 {
     for(int i=0;i<Size;i++)
         if(v[i]%2==0)
@@ -152,11 +155,12 @@ void SetClass::elemente(SetClass& b, SetClass& c)
             c.Inserare(v[i]);
 }
 
-int SetClass::nr_el()
+int SetClass::nr_el() ///numarul de elemente al multimii
 {
     return Size;
 }
 
+///supraincarcarea operatorilor de afisarea si citirea unei multimi
 
 std::ostream& operator<<(std::ostream& out, const SetClass& v)
 {

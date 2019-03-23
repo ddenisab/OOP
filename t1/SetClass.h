@@ -10,8 +10,8 @@ class SetClass
     int *v;
     int Size, maxSize;
     public:
-        //SetClass();
-        SetClass(int=1);
+        SetClass();
+        SetClass(int);
         ~SetClass();
         friend std::ostream& operator<<(std::ostream&, const SetClass&);
         friend std::istream& operator>>(std::istream&, SetClass&);
@@ -29,10 +29,6 @@ class SetClass
         int suma();
         void elemente(SetClass&, SetClass&);
         int nr_el();
-
-   /* protected:
-
-    private:*/
 };
 
 #endif // SETCLASS_H

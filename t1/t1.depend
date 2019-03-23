@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1553363805 source:f:\fmi\poo\t1\main.cpp
+1553383081 source:f:\fmi\poo\t1\main.cpp
 	<iostream>
 	"SetClass.h"
 
-1553361462 f:\fmi\poo\t1\setclass.h
+1553383081 f:\fmi\poo\t1\setclass.h
 	<iostream>
 	<exception>
 	<stdexcept>
 
-1553365977 source:f:\fmi\poo\t1\setclass.cpp
+1553383170 source:f:\fmi\poo\t1\setclass.cpp
 	"SetClass.h"
 
